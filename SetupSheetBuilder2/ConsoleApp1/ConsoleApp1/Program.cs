@@ -4,13 +4,41 @@
     {
         static void Main(string[] args)
         {
+
+            /*
+             * initalizing instance variables, These should probably be placed elsewhere
+             */
+
             string[] positions = { "Shift Leader", "Breaker", "Prep", "Secondary", "Fries", "Primary 1", "Breader", "Machines",
                 "Primary 2", "Utilities", "Buns", "Secondary 2", "Trainee", "Trainer", "Team Leader" };
             string tmPath = @"C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder2\Data\teammembers.txt";
+            string[] functionalityOptions = { "Manage Team Members", "Create A SetupSheet", "Exit The Program"};
 
 
-            SetupSheet TodaysSetup = new SetupSheet();
-            TodaysSetup.createTodaysSetup(positions);
+            /*
+             * Initalizing All nessecary objects and calling function to chose what the user would like to do.
+             */
+
+            do 
+            {
+
+                LocalMenus MainMenu = new LocalMenus();
+                string currentOption = MainMenu.ChoseOption(functionalityOptions);
+                if (currentOption == "3")
+                {
+                    break;
+                }
+                else if (currentOption == "2")
+                {
+                    SetupSheet TodaysSetup = new SetupSheet();
+                    TodaysSetup.createTodaysSetup(positions);
+                }
+                else if (currentOption == "1")
+                { 
+                    PersonelManagement TeamManager = new PersonelManagement();
+                    List<string> currentTeamMembers = TeamManager.GetCurrentTeamMembers(tmPath);
+                }
+            }while (true);
         }
     }
     public class LocalMenus
@@ -19,6 +47,14 @@
         /*
          * this will take in noun and a format and display them, then confirm the user input is correct returnin the value is desired.
          */
+        public void MainMenu()
+        {
+            Console.WriteLine("Please Select which fucntionality you would like to use right now!");
+            Console.WriteLine("1) Create a setupsheet for today");
+            Console.WriteLine("2) Manage active Team Members");
+            Console.WriteLine("3) Manage SetupSheet Settings *NOT CURRENTLY ACTIVE");
+            string currentFunctionality = GetCorrectInput("desired functionality"," '1', '2', or '3' ");
+        }
 
         public string GetCorrectInput(string desiredOutput, string desiredFormat)
         {
@@ -52,19 +88,16 @@
 
 
 
-        public void ChoseFunctionality(string[] options)
+        public string ChoseOption(string[] options)
         {
             int currentOption = 1;
-            Console.WriteLine("Please type a number without formatting to select what you would like to do!");
             foreach (string option in options)
             {
-                Console.WriteLine(currentOption + "option");
+                Console.WriteLine(currentOption + option);
+                currentOption++;
             }
-
-            do
-            {
-
-            } while (true);
+            string currentFunction = GetCorrectInput("desired option", " '1' ");
+            return currentFunction;
         }
 
     }
