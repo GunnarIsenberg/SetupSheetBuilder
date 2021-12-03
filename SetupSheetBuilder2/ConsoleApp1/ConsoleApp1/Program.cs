@@ -168,31 +168,29 @@
             }
         }
 
-        public string GetTeamMember(List<string> currentTeamMembers, string targetTeamMember)
+        public List<string> GetTeamMember(List<string> currentTeamMembers, string targetTeamMember)
         {
             if (currentTeamMembers.Contains(targetTeamMember))
             {
-                int currentLocation = currentTeamMembers.IndexOf(targetTeamMember);
-                string teamMember = currentTeamMembers[currentLocation];
-                teamMember.Split(" ");
-                Console.WriteLine("Which atribute would you like to edit?");
-                foreach(string atribute in teamMember)
-                {
-                    Console.WriteLine(atribute);
-                }
+                int indexOfTarget = currentTeamMembers.IndexOf(targetTeamMember);
+                currentTeamMembers.RemoveAt(indexOfTarget);
+                string teamMember = currentTeamMembers[indexOfTarget];
+                List<string> teamMemberAtributes = teamMember.Split(" ").ToList();
+                return teamMemberAtributes;
             }
-            else
-            { 
+            else 
+            {
                 Console.WriteLine(couldNotFindTm);
-                return targetTeamMember;
-            }
+                return currentTeamMembers;
+            } 
+                
+        }
+
+        public void ManageTeamMember(List<string> targetTeamMember, string option)
+        { 
+            
         }
 
 
-    }   
-
-
-
-
-    }
+    }    
 }
