@@ -1,0 +1,15 @@
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\SetupSheetBuilder.exe
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\SetupSheetBuilder.deps.json
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\SetupSheetBuilder.runtimeconfig.json
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\SetupSheetBuilder.dll
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\ref\SetupSheetBuilder.dll
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\bin\Debug\net6.0\SetupSheetBuilder.pdb
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.csproj.AssemblyReference.cache
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.AssemblyInfoInputs.cache
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.AssemblyInfo.cs
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.csproj.CoreCompileInputs.cache
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.dll
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\ref\SetupSheetBuilder.dll
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.pdb
+C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder\obj\Debug\net6.0\SetupSheetBuilder.genruntimeconfig.cache
