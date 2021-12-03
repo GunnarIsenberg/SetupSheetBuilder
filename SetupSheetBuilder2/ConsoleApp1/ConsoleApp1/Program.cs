@@ -106,6 +106,7 @@
 
     public class PersonelManagement
     {
+        string couldNotFindTm = "Error: Could not locate That Team member";
 
 
         public List<string> GetCurrentTeamMembers(string path)
@@ -120,10 +121,41 @@
             currentTeamMembers.Add(name);
         }
 
-        public void RemoveTeamMember(List<string> currenTeamMembers);
+        public List<string> RemoveTeamMember(List<string> currenTeamMembers, string targetTeamMember)
         {
-
+            if (currenTeamMembers.Contains(targetTeamMember))
+            {
+                currenTeamMembers.Remove(targetTeamMember);
+                return currenTeamMembers;
+            }
+            else
+            {
+                Console.WriteLine(couldNotFindTm);
+                return currenTeamMembers;
+            }
         }
+
+        public string GetTeamMember(List<string> currentTeamMembers, string targetTeamMember)
+        {
+            if (currentTeamMembers.Contains(targetTeamMember))
+            {
+                int currentLocation = currentTeamMembers.IndexOf(targetTeamMember);
+                string teamMember = currentTeamMembers[currentLocation];
+                teamMember.Split(" ");
+                Console.WriteLine("Which atribute would you like to edit?");
+                foreach(string atribute in teamMember)
+                {
+                    Console.WriteLine(atribute);
+                }
+            }
+            else
+            { 
+                Console.WriteLine(couldNotFindTm);
+                return targetTeamMember;
+            }
+        }
+
+
     }   
 
 
