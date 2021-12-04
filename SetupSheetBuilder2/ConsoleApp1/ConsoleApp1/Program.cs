@@ -139,7 +139,33 @@
 
     public class PersonelManagement
     {
+
+        /*
+         * instance variables that help define properties in their relation to the restraunt.
+         */
+
         string couldNotFindTm = "Error: Could not locate That Team member";
+
+        Dictionary<int, string> indexPositionPair = new Dictionary<int, string>
+        {
+            {01 , "Leader Ship Level" },
+            {02 , "Prep Level" },
+            {03, "Secondary Level" },
+            {04, "Fries Level"},
+            {05, "Primary Level"},
+            {06, "Breader Level"},
+            {07, "Machines Level" },
+            {08, "Utilities Level" },
+            {09, "Buns Level" },
+            {10, "Delete The Team Member" }
+        };
+
+        string[] definitionOfLevel = { "0: Cannot perform the job duties", "1: Can perform the duties with help", "2: Can Perform the duties without help", 
+            "3: Can solve issues or perform the job on a weekend alone", "4: Can Perform the job duties to Chick-Fil-A standard alone", "5: May teach the Job to others"};
+
+
+
+
 
 
         public List<string> GetCurrentTeamMembers(string path)
@@ -186,9 +212,40 @@
                 
         }
 
-        public void ManageTeamMember(List<string> targetTeamMember, string option)
-        { 
+        public string ManageTeamMember(List<string> targetTeamMember, Dictionary<int, string> indexPosition, string[] ratings)
+        {
             
+            /*
+             * Prints out the scale upon with a team member is graded
+             */
+
+            Console.WriteLine("Please remember the scale upon which a Team Member is graded");
+            foreach (string rating in ratings)
+            {
+                Console.WriteLine(rating);
+            }
+
+            Console.WriteLine("Please type the following number to update the corresponding skill of the team member.");
+            foreach (KeyValuePair<int, string> keyValuePair in indexPosition)
+            {
+                Console.WriteLine (keyValuePair.Key + keyValuePair.Value);
+            }
+
+            string userInput = Console.ReadLine();
+
+            try
+            {
+                int optionSelected = int.Parse(userInput);
+                Console.WriteLine("Please Type what you would like to replace the Skill level with:");
+                string updatedSkillLevel = Console.ReadLine();
+                targetTeamMember[optionSelected].Replace(targetTeamMember[optionSelected], updatedSkillLevel);
+                return targetTeamMember.ToString();
+            }
+            catch
+            {
+                Console.Write("failed");
+                return targetTeamMember.ToString();
+            }
         }
 
 
