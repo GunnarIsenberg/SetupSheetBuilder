@@ -1,0 +1,15 @@
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\SetupFinal.exe
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\SetupFinal.deps.json
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\SetupFinal.runtimeconfig.json
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\SetupFinal.dll
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\ref\SetupFinal.dll
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\bin\Debug\net6.0\SetupFinal.pdb
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.csproj.AssemblyReference.cache
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.AssemblyInfoInputs.cache
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.AssemblyInfo.cs
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.csproj.CoreCompileInputs.cache
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.dll
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\ref\SetupFinal.dll
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.pdb
+C:\Users\Gunna\OneDrive\Desktop\SetupSheetFinal\SetupFinal\SetupFinal\obj\Debug\net6.0\SetupFinal.genruntimeconfig.cache

@@ -1,59 +1,51 @@
-﻿namespace SetupBuilder
+﻿using System.Collections;
+using System;
+using System.Linq;
+
+namespace SetupBuilder
 {
     class Program
     {
         static void Main(string[] args)
         {
-
-            /*
-             * initalizing instance variables, These should probably be placed elsewhere
-             */
-
-            string[] positions = { "Shift Leader", "Breaker", "Prep", "Secondary", "Fries", "Primary 1", "Breader", "Machines",
-                "Primary 2", "Utilities", "Buns", "Secondary 2", "Trainee", "Trainer", "Team Leader" };
-            string tmPath = @"C:\Users\Gunna\OneDrive\Desktop\Projects\SetupSheetBuilder2\Data\teammembers.txt";
-            string[] functionalityOptions = { "Manage Team Members", "Create A SetupSheet", "Exit The Program"};
-
-
-            /*
-             * Initalizing All nessecary objects and calling function to chose what the user would like to do.
-             */
-
-            do 
-            {
-
-                LocalMenus MainMenu = new LocalMenus();
-                string currentOption = MainMenu.ChoseOption(functionalityOptions);
-                if (currentOption == "3")
-                {
-                    break;
-                }
-                else if (currentOption == "2")
-                {
-                    SetupSheet TodaysSetup = new SetupSheet();
-                    TodaysSetup.createTodaysSetup(positions);
-                }
-                else if (currentOption == "1")
-                { 
-                    PersonelManagement TeamManager = new PersonelManagement();
-                    List<string> currentTeamMembers = TeamManager.GetCurrentTeamMembers(tmPath);
-                }
-            }while (true);
+            LocalMenus currentMenu = new LocalMenus();
+            currentMenu.MainMenu();
         }
     }
     public class LocalMenus
     {
 
         /*
-         * this will take in noun and a format and display them, then confirm the user input is correct returnin the value is desired.
+         * The initailization of all objects and menu to allow the user to 
          */
         public void MainMenu()
         {
+            string[] positions = { "Shift Leader", "Breaker", "Prep", "Secondary", "Fries", "Primary 1", "Breader", "Machines",
+                "Primary 2", "Utilities", "Buns", "Secondary 2", "Trainee", "Trainer", "Team Leader" };
+            
+            string[] functionalityOptions = { "Manage Team Members", "Create A SetupSheet", "Exit The Program" };
+
+            SetupSheet todaysSetup = new SetupSheet();
+            PersonelManagement teamManager = new PersonelManagement();
+            
             Console.WriteLine("Please Select which fucntionality you would like to use right now!");
             Console.WriteLine("1) Create a setupsheet for today");
             Console.WriteLine("2) Manage active Team Members");
             Console.WriteLine("3) Manage SetupSheet Settings *NOT CURRENTLY ACTIVE");
             string currentFunctionality = GetCorrectInput("desired functionality"," '1', '2', or '3' ");
+
+            if (currentFunctionality == "1")
+            {
+                todaysSetup.InitalizeShiftSetup();
+            }
+            else if (currentFunctionality == "2")
+            {
+                Console.WriteLine("test");
+            }
+            else
+            {
+                Console.WriteLine("That is currently not an accepted action");
+            }
         }
 
         public string GetCorrectInput(string desiredOutput, string desiredFormat)
@@ -127,14 +119,91 @@
          * relies upon the menu class to get a list of names for the setupsheet. 
          */
 
+        public Dictionary<string, string> BuildSetupSheet(Stack<string> positions, Queue<string> tms, int currentIndex, Dictionary<string, string> passedDictionary)
+        {
+            string currentTeamMember = (string)tms.Dequeue();
+            string[] currentarray = currentTeamMember.Split(" ");
+
+            List<string> tmString = new List<string>();
+            tmString = currentarray.ToList();
+
+            string tmName = tmString[0];
+            tmString.Remove(tmName);
+
+            List<int> tmAtributes = new List<int>();
+            foreach (string atrbite in tmString)
+            {
+                int tmAtribute = int.Parse(atrbite);
+                tmAtributes.Add(tmAtribute);
+            }
+
+            while (tms.Count > 0)
+            {
+                string currentPosition = (string)positions.Peek();
+
+                if (tmAtributes[0] >= 4 && passedDictionary.Count() == 0)
+                {
+                    passedDictionary.Add(tmName, currentPosition);
+                    currentIndex--;
+                    BuildSetupSheet(positions, tms, currentIndex, passedDictionary);
+                }
+                else if (tmAtributes[currentIndex] <= 2)
+                {
+                    passedDictionary.Add(tmName, currentPosition);
+                    currentIndex--;
+                    BuildSetupSheet(positions, tms, currentIndex, passedDictionary);
+                }
+                else
+                {
+                    tms.Enqueue(currentTeamMember);
+                    positions.Push(currentPosition);
+                    return passedDictionary;
+                }
+            }
+            return passedDictionary;
+        }
+
+
+        public Dictionary<string, string> InitalizeShiftSetup()
+        {
+            Stack<string> positions = new Stack<string>();
+            positions.Push("Shift Leader");
+            positions.Push("Breaker");
+            positions.Push("Prep");
+            positions.Push("Secondary");
+            positions.Push("Fries");
+            positions.Push("Primary");
+            positions.Push("Breader");
+            positions.Push("Machines");
+            positions.Push("Utilities");
+            positions.Push("Buns");
+            positions.Push("Training");
+
+            int indexOfStack = 1;
+            int indexOfQue = 1;
+            int startingIndex = 11;
+            string[] todaysTeam = GetSetupNames();
+            Queue<string> teamQue = new Queue<string>();
+            Dictionary<string, string> assignedPositions = new Dictionary<string, string>();
+
+            foreach (string tm in todaysTeam)
+            { 
+                teamQue.Enqueue(tm);
+            }
+
+            return BuildSetupSheet(positions, teamQue, startingIndex, assignedPositions);
+        }
+
         private string[] GetSetupNames()
         {
             LocalMenus setupMenu = new LocalMenus();
-            string allNamesString = setupMenu.GetCorrectInput("team members names", "Greg Bob Steven Daniel Robert Mike");
+            string allNamesString = setupMenu.GetCorrectInput("team members names", "Greg_Anderson Bob_Michaels Steven_DuPont Daniel_Lynn Robert_DeNiro Mike_Wazowski");
             string[] allNamesList = allNamesString.Split(" ");
             return allNamesList;
-
         }
+
+       
+
     }
 
     public class PersonelManagement
@@ -160,27 +229,30 @@
             {10, "Delete The Team Member" }
         };
 
+        
+
+        
+        
         string[] definitionOfLevel = { "0: Cannot perform the job duties", "1: Can perform the duties with help", "2: Can Perform the duties without help", 
             "3: Can solve issues or perform the job on a weekend alone", "4: Can Perform the job duties to Chick-Fil-A standard alone", "5: May teach the Job to others"};
 
-
-
-
-
-
-        public List<string> GetCurrentTeamMembers(string path)
+        private List<string> GetCurrentTeamMembers(string path)
         {
             List<string> currentTeamMembers = File.ReadAllLines(path).ToList();
+            foreach(string tm in currentTeamMembers)
+            {
+                Console.WriteLine(tm);
+            }
             return currentTeamMembers;
         }
 
-        public void AddTeamMember(string path, string name)
+        private void AddTeamMember(string path, string name)
         {
             List<string> currentTeamMembers = GetCurrentTeamMembers(path);
             currentTeamMembers.Add(name);
         }
 
-        public List<string> RemoveTeamMember(List<string> currenTeamMembers, string targetTeamMember)
+        private List<string> RemoveTeamMember(List<string> currenTeamMembers, string targetTeamMember)
         {
             if (currenTeamMembers.Contains(targetTeamMember))
             {
@@ -194,7 +266,7 @@
             }
         }
 
-        public List<string> GetTeamMember(List<string> currentTeamMembers, string targetTeamMember)
+        private List<string> GetTeamMember(List<string> currentTeamMembers, string targetTeamMember)
         {
             if (currentTeamMembers.Contains(targetTeamMember))
             {
@@ -212,7 +284,7 @@
                 
         }
 
-        public string ManageTeamMember(List<string> targetTeamMember, Dictionary<int, string> indexPosition, string[] ratings)
+        private string ManageTeamMember(List<string> targetTeamMember, Dictionary<int, string> indexPosition, string[] ratings)
         {
             
             /*
